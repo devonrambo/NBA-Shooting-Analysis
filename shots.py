@@ -25,9 +25,6 @@ print(shotlog.head(10))
 
 player_list = shotlog['player_name'].unique()
 
-print(player_list)
-print(len(player_list))
-
 # Make functions for players respective metrics
 
 touch_time_list = []
@@ -74,15 +71,7 @@ med_def_distance(player_list)
 
 features_array = np.column_stack((dribbles_list, def_dist_list, shot_dist_list))
 
-print(features_array)
-
-print(features_array[5])
-
 norm_features = normalize(features_array, axis = 0)
-
-print(norm_features)
-
-print(norm_features[5])
 
 # create the model
 
@@ -92,9 +81,9 @@ model.fit(norm_features)
 
 labels = model.predict(norm_features)
 
-print(labels)
 
-
+# check to make sure every player has a cluster
+# combine player's with their clusters
 print(player_list.shape)
 print(labels.shape)
 
@@ -104,15 +93,15 @@ clusters = list(clusters)
 clusters = np.array(clusters)
 
 sorted_clusters = clusters[np.argsort(clusters[:, 1])]
+# print the full list of players and their respective clusters
 
 print(sorted_clusters)
 
-print(model.cluster_centers_indices_)
-print(model.cluster_centers_)
+# find the number of interations the algorithm took to converge
+
 print(model.n_iter_)
 
-
-# make the plot
+# make and show the 3d plot to visualize the different clusters
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection = '3d')
