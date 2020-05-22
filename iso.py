@@ -47,8 +47,6 @@ iso_points_scored = []
 
 iso_shots_taken = []
 
-
-
 # defensive functions to fill out lists
 
 def iso_defended(x):
@@ -58,7 +56,6 @@ def iso_defended(x):
 		iso_shots_defended.append(count)
 
 iso_defended(on_defender_list)
-
 
 def points_per_possession_on(x):
 	for i in on_defender_list:
@@ -162,9 +159,8 @@ df_player['O_Rating_Total'] = df_player['offensive_rating'] * df_player['Shots_T
 df_player['D_Rating_Total'] = df_player['defensive_rating'] * df_player['Shots_Defended']
 del df_player['player_y']
 df_player = df_player.sort_values(by = 'D_Rating_Total', ascending = False)
-print(df_player[['player_x', 'D_Rating_Total']].head(20).reset_index())
 
-
+# writing the function that allows a user to enter in a player's name and return their metrics
 
 search_name = input('Welcome to the 2014-2015 NBA Shooting Dashboard! \nThis Dashboard will return metrics based on isolation offense and defense \nFor our purposes isolation is definded as a player having possession of the ball for 2 or more seconds  \nThe total value added metric accounts for efficiency, volume & quality of opposing player \nEnter a player name in the format Lastname, Firstname to view their metrics: ')
 
